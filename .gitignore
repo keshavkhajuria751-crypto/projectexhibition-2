@@ -1,0 +1,7 @@
+# Dependency directories
+node_modules/
+
+# Other common things to ignore
+.env
+dist/
+*.log
