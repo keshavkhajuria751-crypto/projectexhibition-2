@@ -1,0 +1,90 @@
+.page {
+  min-height: 100vh;
+  background: var(--cr);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.card {
+  background: #fff; border: 1px solid var(--cr-b);
+  border-radius: 24px; padding: 52px 56px;
+  width: 100%; max-width: 450px;
+  box-shadow: var(--sh-lg); text-align: center;
+}
+
+/* Dual spinner */
+.spinnerWrap {
+  width: 60px; height: 60px;
+  margin: 0 auto 26px;
+  position: relative;
+}
+
+.spinnerOuter {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 3px solid var(--cr-b);
+  border-top-color: var(--tc);
+  animation: spin .9s linear infinite;
+}
+
+.spinnerInner {
+  position: absolute; inset: 9px; border-radius: 50%;
+  border: 2px solid transparent;
+  border-bottom-color: var(--fg);
+  animation: spin 1.4s linear infinite reverse;
+}
+
+.title {
+  font-family: 'Fraunces', serif; font-size: 22px;
+  font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px;
+}
+
+.url {
+  font-size: 12px; color: var(--ink-m); margin-bottom: 30px;
+  font-family: 'DM Mono', monospace;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 300px; margin-left: auto; margin-right: auto;
+  display: block;
+}
+
+/* Steps */
+.steps {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 12px;
+  text-align: left;
+}
+
+.step {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: var(--ink-f);
+  transition: color .3s;
+}
+
+.step.done   { color: var(--fg); }
+.step.active { color: var(--ink); }
+
+.stepNum {
+  width: 22px; height: 22px; border-radius: 50%;
+  flex-shrink: 0; display: flex; align-items: center;
+  justify-content: center; font-size: 11px; font-weight: 700;
+  background: var(--cr-d); border: 1.5px solid var(--cr-b);
+  color: var(--ink-f); transition: all .3s;
+}
+
+.step.done .stepNum {
+  background: var(--fg-l); border-color: var(--fg); color: var(--fg);
+}
+
+.step.active .stepNum {
+  background: var(--tc-l); border-color: var(--tc); color: var(--tc);
+  animation: pulseDot .8s ease infinite;
+}
+
+/* Progress bar */
+.track {
+  height: 3px; background: var(--cr-d);
+  border-radius: 2px; margin-top: 26px; overflow: hidden;
+}
+
+.fill {
+  height: 100%; background: var(--tc); border-radius: 2px;
+  transition: width .5s ease;
+}

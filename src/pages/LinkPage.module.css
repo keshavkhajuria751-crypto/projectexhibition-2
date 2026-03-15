@@ -1,0 +1,152 @@
+.page {
+  min-height: 100vh;
+  background: var(--cr);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.inner { width: 100%; max-width: 660px; }
+
+/* Eyebrow badge */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--tc-l); border: 1px solid var(--tc-m);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 12px; font-family: 'DM Mono', monospace;
+  color: var(--tc); margin-bottom: 18px;
+  letter-spacing: 0.04em;
+}
+
+.eyebrowDot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--tc);
+  display: inline-block;
+  animation: pulseDot 1.8s ease infinite;
+}
+
+/* Title */
+.title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(32px, 5vw, 50px);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.03em; margin-bottom: 12px;
+}
+
+.titleEm { font-style: italic; color: var(--tc); }
+
+.sub {
+  font-size: 16px; color: var(--ink-m);
+  line-height: 1.65; margin-bottom: 36px;
+  max-width: 500px;
+}
+
+/* Input box */
+.inputBox {
+  background: #fff;
+  border: 2px solid var(--cr-b);
+  border-radius: 16px;
+  padding: 8px 8px 8px 18px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--sh);
+  transition: border-color .2s, box-shadow .2s;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.inputBox:focus-within {
+  box-shadow: 0 0 0 4px rgba(201,79,44,.1), var(--sh);
+}
+
+.inputIcon { font-size: 20px; flex-shrink: 0; }
+
+.urlInput {
+  flex: 1; border: none; outline: none;
+  font-size: 15px; font-family: 'DM Mono', monospace;
+  color: var(--ink); background: transparent; min-width: 160px;
+}
+
+.urlInput::placeholder { color: var(--ink-f); font-family: 'DM Sans', sans-serif; }
+
+.detectedLabel {
+  font-size: 12px; font-family: 'DM Mono', monospace;
+  font-weight: 500; flex-shrink: 0;
+}
+
+.analyzeBtn {
+  padding: 12px 20px;
+  background: var(--tc); border: none; border-radius: 12px;
+  color: white; font-family: 'Fraunces', serif;
+  font-weight: 600; font-size: 15px; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0;
+  transition: all .2s; letter-spacing: -0.01em;
+  box-shadow: 0 3px 12px rgba(201,79,44,.28);
+}
+
+.analyzeBtn:hover {
+  background: #B8441F; transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201,79,44,.38);
+}
+
+/* Examples */
+.examples {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 8px; margin-bottom: 44px;
+}
+
+.examplesLabel {
+  font-size: 12px; color: var(--ink-f);
+  font-family: 'DM Mono', monospace;
+}
+
+.exampleChip {
+  padding: 5px 12px; border-radius: 20px;
+  background: var(--cr-d); border: 1px solid var(--cr-b);
+  font-size: 12px; color: var(--ink-m);
+  font-family: 'DM Mono', monospace; cursor: pointer;
+  max-width: 220px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+  transition: all .2s;
+}
+
+.exampleChip:hover { background: #fff; border-color: var(--tc); color: var(--tc); }
+
+/* Platform grid */
+.sectionLabel {
+  font-size: 11px; font-family: 'DM Mono', monospace;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-f); margin-bottom: 14px;
+}
+
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.platformCard {
+  padding: 13px 6px; border-radius: 12px;
+  border: 1.5px solid var(--cr-b); background: #fff;
+  text-align: center; cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 1px 3px rgba(26,21,16,.06);
+}
+
+.platformCard:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+
+.platformIcon { font-size: 20px; margin-bottom: 5px; }
+
+.platformName { font-size: 11px; font-weight: 500; color: var(--ink-m); }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .platformGrid { grid-template-columns: repeat(3, 1fr); }
+  .analyzeBtn { width: 100%; }
+}
