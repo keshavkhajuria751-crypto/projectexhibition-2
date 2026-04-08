@@ -11,6 +11,7 @@ export const logout = () => api.post('/auth/logout');
 export const getMe = () => api.get('/auth/me');
 
 export const predictPrice = (url) => api.post('/prediction/predict', { url });
+export const trackPrice = (data) => api.post('/prediction/track', data);
 export const getHistory = () => api.get('/users/history');
 
 export default api;

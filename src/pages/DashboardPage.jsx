@@ -1,6 +1,7 @@
 import Topbar from '../components/Topbar'
 import PriceChart from '../components/PriceChart'
 import styles from './DashboardPage.module.css'
+import { trackPrice } from '../utils/api'
 
 const fmt  = (n) => '₹' + Number(n).toLocaleString('en-IN')
 const fabs = (n) => '₹' + Math.abs(Number(n)).toLocaleString('en-IN')
@@ -8,6 +9,21 @@ const fabs = (n) => '₹' + Math.abs(Number(n)).toLocaleString('en-IN')
 export default function DashboardPage({ result: r, user, onNewAnalysis, onLogout }) {
   const isBuy  = r.recommendation === 'BUY'
   const pctAbs = Math.abs(parseFloat(r.pctChange))
+
+  const handleTrack = async () => {
+    try {
+      await trackPrice({
+        url: r.url,
+        productName: r.name,
+        currentPrice: r.currentPrice,
+        targetPrice: r.predictedPrice
+      });
+      alert('Success! We will keep track of this price for you.');
+    } catch (err) {
+      console.error('Track failed:', err);
+      alert('Failed to set up tracking. Please try again later.');
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -42,6 +58,13 @@ export default function DashboardPage({ result: r, user, onNewAnalysis, onLogout
               : `Price is expected to drop ${pctAbs}% — from ${fmt(r.currentPrice)} to ${fmt(r.predictedPrice)}. You could save ${fabs(r.savings)} by waiting. Historically the lowest price was ${fmt(r.minH)} in ${r.bestM}.`
             }
           </p>
+
+          <button 
+            className={styles.trackBtn}
+            onClick={() => handleTrack()}
+          >
+            🔔 Keep track of this price
+          </button>
         </div>
 
         {/* ── Stat cards ── */}
@@ -50,7 +73,7 @@ export default function DashboardPage({ result: r, user, onNewAnalysis, onLogout
             {
               label: 'Current price',
               value: fmt(r.currentPrice),
-              sub:   `${r.platform.name} · ${r.category}`,
+              sub:   `${r.platform.name}`,
               color: 'var(--ink)',
               delay: '.10s',
             },

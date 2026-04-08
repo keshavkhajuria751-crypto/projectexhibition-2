@@ -25,15 +25,15 @@ export default function App() {
     
     try {
       const response = await predictPrice(productUrl);
-      if (response.data && response.data.prediction) {
-        setResult(response.data.prediction);
+      if (response.data && response.data.currentPrice) {
+        setResult(response.data);
         setScreen('dashboard');
       } else {
         throw new Error('Invalid response from server');
       }
     } catch (error) {
       console.error('Analysis failed:', error);
-      alert('Failed to analyze URL. Please check the backend console and ensure the Python script works.');
+      alert('Failed to analyze URL. Please check your internet connection and try again.');
       setScreen('link');
     }
   }
